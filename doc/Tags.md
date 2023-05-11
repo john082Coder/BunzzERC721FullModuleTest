@@ -1,2 +1,1 @@
-mint, safemint, aux, baseURI
-
+mint, tokenURI

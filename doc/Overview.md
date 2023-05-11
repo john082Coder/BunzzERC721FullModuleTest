@@ -1,26 +1,26 @@
 ## About
 > one line description ← What issue does this module solve?
 
- Implementation of ERC721 Non-Fungible Token Standard, including the Metadata extension. Built to optimize for lower gas during batch mints.
+ ERC721MintRole module is a standard interface for non-fungible tokens, also known as deeds. The following standard allows for the implementation of a standard API for NFTs within smart contracts. This standard provides basic functionality to track and transfer NFTs.
 
 
 ## Features
 
-- Users can mint multiple nfts in a single transaction.
-- Assumes that an owner cannot have more than 2^64 - 1 (max value of uint64) of supply.
-- Assumes serials are sequentially minted starting at _startTokenId() (defaults to 0, e.g. 0, 1, 2, 3..)
+ERC721MintRole module provides the functions to create a nft collection and host its metadata will be assign directly using the base uri.
+
+This module have the feature of minting as many tokens as you want and host their metadata on more centralized solutions like s3, in addition the tokens can be transferred to any address without restrictions.
+
 
 ## Use case
 
-The goal of ERC721A is to provide a fully compliant implementation of IERC721 with significant gas savings for minting multiple NFTs in a single transaction.
+ERC721 tokens are perfect for physical assets such as land, real estate, art trading, loan financing and other financial products, agricultural land management, identification, data storing and so on.
 
 ## Sample dApp
 - github repo URL
-    https://github.com/john082Coder/BunzzERC721AModuleTest
+    https://github.com/john082Coder/BunzzERC721FullModuleTest
 - simple dapp URL
-    https://bunzz-erc-721-a-module-test.vercel.app/
+    https://bunzz-erc-721-full-module-test.vercel.app/
 
 
 ---
 ## Review report
-- [JCoder's report](https://docs.google.com/document/d/1aNDviq8lCuUFfnFtqy7gyoiBfVYnKKefL0fum9SEKYI/edit?usp=sharing)
