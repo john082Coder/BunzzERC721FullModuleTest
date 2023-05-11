@@ -37,13 +37,6 @@ Gives an certain address permision to move tokens for the token owner
 |to|address|Account to approve to spend caller balance|
 |tokenId|uint256|Token id that will be approved to be user by other account|
 
-## _setAux
-Sets the auxillary data for `owner`. (e.g. number of whitelist mint slots used).
-
-|Name|Type|Description|
-|--- |---|---|
-|owner|address|Owner address|
-|aux|uint64|Auxillary data slots|
 
 ## setApprovalForAll
 
@@ -54,85 +47,48 @@ Sets or unsets the approval of a given operator An operator is allowed to transf
 |operator|address|The account that will be the balance operator|
 |approved|bool|Approval status|
 
-## _safeMint
-Safely mints `quantity` tokens and transfers them to `to`.
+
+## mint
+Can only be called by the contract owner. Needs to provide the address that will receive the NFT. Needs to provide a token ID for metadata
 
 |Name|Type|Description|
 |--- |---|---|
-|to|address|Mint to address|
-|quantity|uint256|Mint quantity|
-|_data|bytes memory|Safe mint data|
+|to|address|The tokens receiver|
+|_tokenId|uint256|New token id that will be minted|
 
-## _mint
-Mints `quantity` tokens and transfers them to `to`.
-
-|Name|Type|Description|
-|--- |---|---|
-|to|address|Mint to address|
-|quantity|uint256|Mint quantity|
-
-## _transfer
-Transfers `tokenId` from `from` to `to`.
+## revokeRole
+Revokes role from account
 
 |Name|Type|Description|
 |--- |---|---|
-|from|address|Transfer from address|
-|to|address|Transfer to address|
-|tokenId|uint256|Token ID|
+|role|bytes32|The role id|
+|account|address|The account that will be rovoked from role|
 
-## _burn
-Destorys `tokenId`.
-
-|Name|Type|Description|
-|--- |---|---|
-|tokenId|uint256|Token ID|
-|approvalCheck|bool|True for approved|
-
-## _approve
-Approve `to` to operate on `tokenId`
+## renounceRole
+Renounce role from account
 
 |Name|Type|Description|
 |--- |---|---|
-|to|address|Approve to address|
-|tokenId|uint256|Token ID|
-|owner|address|Owner address|
+|role|bytes32|The role id|
+|account|address|The account that will renounce the role|
 
-## _checkContractOnERC721Received
-Internal function to invoke {IERC721Receiver-onERC721Received} on a target contract.
-
-|Name|Type|Description|
-|--- |---|---|
-|from|address|Address representing the previous owner of the given token ID|
-|to|address|Target address that will receive the tokens|
-|tokenId|uint256|ID of the token to be transferred|
-|_data|bytes memory|Optional data to send along with the call|
-
-## _beforeTokenTransfers
-Hook that is called before a set of serially-ordered token ids are about to be transferred. This includes minting.
+## grantRole
+Grants a role to account
 
 |Name|Type|Description|
 |--- |---|---|
-|from|address|Transfer from address|
-|to|address|Transfer to address|
-|startTokenId|uint256|Start Token ID|
-|quantity|uint256|Transfer quantity|
+|role|bytes32|The role id|
+|account|address|The account that will be granted the role|
+
 
 # READ(main)
 
-## _startTokenId
-To change the starting tokenId, please override this function.
-
-No arguments
 
 ## totalSupply
 Returns the amount of tokens in existence
 
 No arguments
 
-## _totalMinted
-Returns the total amount of tokens minted in the contract.
-
-No arguments
 
 ## supportsInterface
 Returns a boolean that tells us if the contract supports royalties
@@ -148,37 +104,9 @@ Returns the token amount owned by an address
 |--- |---|---|
 |owner|address|The account which you want to check the balance|
 
-## _numberMinted
-Returns the number of tokens minted by `owner`.
-
-|Name|Type|Description|
-|--- |---|---|
-|owner|address|Owner address|
-
-## _numberBurned
-Returns the number of tokens burned by or on behalf of `owner`.
-
-|Name|Type|Description|
-|--- |---|---|
-|owner|address|Owner address|
-
-## _getAux
-Returns the auxillary data for `owner`. (e.g. number of whitelist mint slots used).
-
-|Name|Type|Description|
-|--- |---|---|
-|owner|address|Owner address|
-
-
-## _ownershipOf
-Gas spent here starts off proportional to the maximum mint batch size.
-
-|Name|Type|Description|
-|--- |---|---|
-|tokenId|uint256|Token ID|
 
 ## ownerOf
-Retrieves the owner of a token id
+Returns the owner of the NFT specified by tokenId
 
 |Name|Type|Description|
 |--- |---|---|
@@ -201,10 +129,21 @@ Returns the uri of the metadata
 |--- |---|---|
 |tokenId|uint256|The id of the token|
 
-## _baseURI
-Base URI for computing {tokenURI}. If set, the resulting URI for each
+## tokenOfOwnerByIndex
+Returns all the tokens owned by an address and given index
 
-No arguments
+|Name|Type|Description|
+|--- |---|---|
+|owner|address|The token owner|
+|index|uint256|The index of the token|
+
+## tokenByIndex
+Return the token index based on user balance
+
+|Name|Type|Description|
+|--- |---|---|
+|index|uint256|The index of the token|
+
 
 ## getApproved
 Gets the approved address for a token ID, or zero if no address set Reverts if the token ID does not exist.
@@ -221,9 +160,27 @@ Tells whether an operator is approved by a given owner.
 |owner|address|The address of the tokens owner|
 |operator|uint256|The account that will get the rights to operate over owner balance|
 
-## _exists
-Returns whether `tokenId` exists.
+## hasRole
+Returns true if account has been granted role
 
 |Name|Type|Description|
 |--- |---|---|
-|tokenId|uint256|Token ID|
+|role|bytes32|The role id|
+|account|address|The account that will be granted the role|
+
+## getRoleAdmin
+Returns the admin role that controls roles
+
+|Name|Type|Description|
+|--- |---|---|
+|role|bytes32|The role id|
+
+## MINTER_ROLE
+The role for minters
+
+No arguments
+
+## DEFAULT_ADMIN_ROLE
+The starting admin for all roles
+
+No arguments
